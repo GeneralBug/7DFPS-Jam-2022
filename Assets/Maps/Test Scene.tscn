@@ -1,11 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Player.tscn" type="PackedScene" id=1]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 10, 10 )
 
+[sub_resource type="ConcavePolygonShape" id=5]
+data = PoolVector3Array( 5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5 )
+
 [sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="ConcavePolygonShape" id=3]
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
+
+[sub_resource type="ConcavePolygonShape" id=4]
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
 [node name="Test Scene" type="Spatial"]
 
@@ -15,13 +24,30 @@ size = Vector2( 10, 10 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
 
+[node name="StaticBody" type="StaticBody" parent="Environment/Floor"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Floor/StaticBody"]
+shape = SubResource( 5 )
+
 [node name="Cube 1" type="MeshInstance" parent="Environment"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68815, 0.641578, -1.61659 )
 mesh = SubResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="Environment/Cube 1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Cube 1/StaticBody"]
+shape = SubResource( 3 )
 
 [node name="Cube 2" type="MeshInstance" parent="Environment"]
 transform = Transform( 1.95012, 0, 0, 0, 0.511368, 0, 0, 0, 1, 2.44269, 0.306321, 3.37354 )
 mesh = SubResource( 2 )
 skeleton = NodePath("../Cube 1")
 
+[node name="StaticBody" type="StaticBody" parent="Environment/Cube 2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Cube 2/StaticBody"]
+shape = SubResource( 4 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
+Gravity_Acceleration = 1.0
+Jump_Acceleration = 2.0

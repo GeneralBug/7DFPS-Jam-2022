@@ -4,12 +4,20 @@ extends KinematicBody
 
 export var Mouse_Sensitivity: float = 0.2
 export var Movement_Speed: float = 3
+export var Gravity_Acceleration: float = 10
+export var Jump_Acceleration: float = 10
+
+var gravity_local = Vector3()
+
 onready var Camera_Anchor = $"Camera Anchor"
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _input(event):
+	if Input.get_action_strength("escape") > 0:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 	if event is InputEventMouseMotion:
 		#rotate horizontal
 		rotate_y(deg2rad(event.relative.x * -1 * Mouse_Sensitivity))
@@ -18,7 +26,17 @@ func _input(event):
 		Camera_Anchor.rotation.x = clamp(Camera_Anchor.rotation.x, PI/-2, PI/2)
 	
 func _physics_process(delta):
-	move_and_slide(get_input_direction() * Movement_Speed, Vector3.UP)
+	
+	#gravity
+	if not is_on_floor():
+		gravity_local += Gravity_Acceleration * Vector3.DOWN * delta
+	else:
+		gravity_local = Gravity_Acceleration * -1 * get_floor_normal() * delta
+	#jumping
+	if is_on_floor() && Input.is_action_just_pressed("player_jump"):
+		gravity_local = Vector3.UP * Jump_Acceleration
+	#apply movement
+	move_and_slide((get_input_direction() * Movement_Speed) + gravity_local, Vector3.UP)
 	
 func get_input_direction() -> Vector3:
 	#gets forward/backward movement
