@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 10, 10 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="Test Scene" type="Spatial"]
+
+[node name="Environment" type="Spatial" parent="."]
+
+[node name="Floor" type="MeshInstance" parent="Environment"]
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+
+[node name="Cube 1" type="MeshInstance" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68815, 0.641578, -1.61659 )
+mesh = SubResource( 2 )
+
+[node name="Cube 2" type="MeshInstance" parent="Environment"]
+transform = Transform( 1.95012, 0, 0, 0, 0.511368, 0, 0, 0, 1, 2.44269, 0.306321, 3.37354 )
+mesh = SubResource( 2 )
+skeleton = NodePath("../Cube 1")
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
