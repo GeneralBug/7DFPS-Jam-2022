@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Models/temp_harpoongun.fbx" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Models/temp_harpoon.fbx" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Scripts/Harpoon_Gun.cs" type="Script" id=3]
+[ext_resource path="res://Assets/Scripts/Harpoon_Projectile.cs" type="Script" id=4]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.04
+height = 2.0
+
+[node name="Harpoon" type="Spatial"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="Harpoon_Projectile" type="KinematicBody" parent="."]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
+collision/safe_margin = 0.01
+motion/sync_to_physics = true
+script = ExtResource( 4 )
+ID = "specific"
+
+[node name="temp_harpoon" parent="Harpoon_Projectile" instance=ExtResource( 2 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="Harpoon_Projectile"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.537344, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="Harpoon_Gun" type="Spatial" parent="."]
+script = ExtResource( 3 )
+
+[node name="temp_harpoongun" parent="Harpoon_Gun" instance=ExtResource( 1 )]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
