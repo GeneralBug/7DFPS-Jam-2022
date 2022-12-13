@@ -13,7 +13,7 @@ onready var Camera_Anchor = $"Camera Anchor"
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	$"Camera Anchor/Harpoon/Harpoon_Gun".SetProjectile($"Camera Anchor/Harpoon/Harpoon_Projectile")
+	$"Camera Anchor/Harpoon/Harpoon_Gun".SetProjectile($"../Harpoon_Projectile")
 func _input(event):
 	#release curour
 	if Input.get_action_strength("escape") > 0:

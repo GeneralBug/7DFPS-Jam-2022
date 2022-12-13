@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Scripts/Harpoon_Projectile.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Models/temp_harpoon.fbx" type="PackedScene" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.04
+height = 2.0
+
+[node name="Harpoon_Projectile" type="KinematicBody"]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 10, 10, 10 )
+collision/safe_margin = 0.01
+motion/sync_to_physics = true
+script = ExtResource( 1 )
+ID = "specific"
+Speed = 1.0
+
+[node name="temp_harpoon" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.537344, 0, 0 )
+shape = SubResource( 1 )
