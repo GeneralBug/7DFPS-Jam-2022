@@ -10,10 +10,20 @@ onready var Player = $"../Player"
 onready var Fake_Harpoon = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun/Fake_Harpoon"
 var Collision
 
+#gravity
+var gravity_local = Vector3()
+export var Gravity_Acceleration: float = 0.001
+
 func GetID() -> String:
 	return ID
 	
 func _physics_process(delta):
+		#gravity
+	if not is_on_floor():
+		gravity_local += Gravity_Acceleration * Vector3.DOWN * delta
+	else:
+		gravity_local = Gravity_Acceleration * -1 * get_floor_normal() * delta
+	
 	match State:
 		STATE.LOADED: #follow gun
 			if(Changing_State):
@@ -33,7 +43,7 @@ func _physics_process(delta):
 				Fake_Harpoon.hide()
 				self.show()
 				Changing_State = false
-			Collision = move_and_collide(transform.basis.xform(Vector3(0, 0, 1)* Speed))
+			Collision = move_and_collide(transform.basis.xform(Vector3(0, 0, 1)* Speed) + gravity_local)
 			#move_and_slide(Player.transform.basis.xform(Vector3(0, 0, 1).normalized()) * Speed, Vector3.UP, true, 0, 0.785398, false)
 			if(Collision):
 				Collide(Collision)
@@ -59,7 +69,6 @@ func _physics_process(delta):
 			if(Collision):
 				Collide(Collision)
 			
-				
 func Fire():
 	if(State == STATE.LOADED):
 		#TODO: animation
