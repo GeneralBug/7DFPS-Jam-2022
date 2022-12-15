@@ -94,7 +94,7 @@ collision_mask = 40
 shape = SubResource( 4 )
 
 [node name="WALL 4" type="MeshInstance" parent="Environment"]
-transform = Transform( -2.18557e-07, 0, 0.05, 0, 3, 0, -5, 0, -2.18557e-09, 5.60311, 2.5, 0.0570664 )
+transform = Transform( -2.18557e-07, 0, 0.05, 0, 3, 0, -5, 0, -2.18557e-09, 5.02371, 2.5, 0.0570664 )
 mesh = SubResource( 2 )
 skeleton = NodePath("../Cube 1")
 

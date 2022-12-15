@@ -8,11 +8,13 @@ export var Speed: float = 0.5
 onready var Harpoon_Gun = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun"
 onready var Player = $"../Player"
 onready var Fake_Harpoon = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun/Fake_Harpoon"
+onready var Tether_Anchor = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun/Tether_Anchor"
 var Collision
 
 #gravity
 var gravity_local = Vector3()
 export var Gravity_Acceleration: float = 0.001
+
 
 func GetID() -> String:
 	return ID
@@ -39,12 +41,10 @@ func _physics_process(delta):
 			if(Changing_State):
 				#TODO: add rope
 				self.global_transform = Harpoon_Gun.global_transform
-				#self.global_rotation = Harpoon_Gun.global_rotation
 				Fake_Harpoon.hide()
 				self.show()
 				Changing_State = false
 			Collision = move_and_collide(transform.basis.xform(Vector3(0, 0, 1)* Speed) + gravity_local)
-			#move_and_slide(Player.transform.basis.xform(Vector3(0, 0, 1).normalized()) * Speed, Vector3.UP, true, 0, 0.785398, false)
 			if(Collision):
 				Collide(Collision)
 			
@@ -54,10 +54,8 @@ func _physics_process(delta):
 				Changing_State = false
 			
 		STATE.RETRACTING:
-			#TODO: replace this with rope retraction
 			if(Changing_State):
 				print("retracting")
-				#self.global_transform = Player.global_transform
 				#turns off collision with obstacles and fish
 				self.set_collision_mask_bit(1, false)
 				self.set_collision_mask_bit(4, false)
@@ -65,7 +63,6 @@ func _physics_process(delta):
 
 			look_at(Player.global_transform.origin, Vector3.UP)
 			Collision = move_and_collide(Calc_Vector()* Speed/2)
-			#move_and_slide(Player.transform.basis.xform(Vector3(0, 0, 1).normalized()) * Speed, Vector3.UP, true, 0, 0.785398, false)
 			if(Collision):
 				Collide(Collision)
 			
