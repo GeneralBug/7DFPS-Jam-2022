@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/untitled.fbx-ee8cf0204dfac1cd665f53f888b9fa7c.scn"
+path="res://.import/untitled.fbx-3d3a15a46645941f2624582ac494484b.scn"
 
 [deps]
 
-source_file="res://untitled.fbx"
-dest_files=[ "res://.import/untitled.fbx-ee8cf0204dfac1cd665f53f888b9fa7c.scn" ]
+source_file="res://Assets/Models/Texture Test/untitled.fbx"
+dest_files=[ "res://.import/untitled.fbx-3d3a15a46645941f2624582ac494484b.scn" ]
 
 [params]
 

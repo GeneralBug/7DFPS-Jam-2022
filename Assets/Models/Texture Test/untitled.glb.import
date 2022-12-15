@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/untitled2.glb-c132c48167a42d2f8817f86f1763d3fb.scn"
+path="res://.import/untitled.glb-30335d20b4c3bc28ab588408849ecfc6.scn"
 
 [deps]
 
-source_file="res://untitled2.glb"
-dest_files=[ "res://.import/untitled2.glb-c132c48167a42d2f8817f86f1763d3fb.scn" ]
+source_file="res://Assets/Models/Texture Test/untitled.glb"
+dest_files=[ "res://.import/untitled.glb-30335d20b4c3bc28ab588408849ecfc6.scn" ]
 
 [params]
 
