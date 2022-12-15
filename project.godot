@@ -65,6 +65,15 @@ player_rightclick={
  ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Obstacles"
+3d_physics/layer_2="Ground"
+3d_physics/layer_3="Invisible Walls"
+3d_physics/layer_4="Fish"
+3d_physics/layer_5="Harpoon"
+3d_physics/layer_6="Player"
+
 [memory]
 
 limits/command_queue/multithreading_queue_size_kb=512

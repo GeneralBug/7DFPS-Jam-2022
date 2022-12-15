@@ -5,13 +5,13 @@
 [ext_resource path="res://Assets/Scripts/Harpoon_Gun.gd" type="Script" id=3]
 
 [node name="Harpoon" type="Spatial"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="Harpoon_Gun" type="Spatial" parent="."]
 script = ExtResource( 3 )
 
 [node name="temp_harpoongun" parent="Harpoon_Gun" instance=ExtResource( 1 )]
-transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
+transform = Transform( -3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 0, 0, 0 )
 
 [node name="Fake_Harpoon" parent="Harpoon_Gun" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 visible = false

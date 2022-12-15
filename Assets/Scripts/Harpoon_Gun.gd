@@ -1,15 +1,8 @@
 extends Spatial
 
+#TODO: does this script need to exist?
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-export var Loaded: bool = true
 var Projectile
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
 func SetProjectile(Ref):
 	Projectile = Ref
@@ -26,13 +19,5 @@ func Shoot():
 	#		II. in fish, chance to pull fish
 	#	b. tether retracts
 	#	c. **touches player, reloads 
-	
-	print("bang")
-	if(Loaded):
-		print("firing " + Projectile.ID)
-		#Loaded = false;
-		#TODO: unlock tether
-		#TODO: trigger gun animation
-		Projectile.Fire()
-	else:
-		print("not firing")
+	Projectile.Fire()
+
