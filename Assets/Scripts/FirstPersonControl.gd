@@ -14,13 +14,14 @@ onready var Camera_Anchor = $"Camera Anchor"
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$"Camera Anchor/Harpoon/Harpoon_Gun".SetProjectile($"../Harpoon_Projectile")
+	
 func _input(event):
 	#release curour
 	if Input.get_action_strength("escape") > 0:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	#shoot
-	if Input.get_action_strength("player_leftclick") > 0:
+	if Input.get_action_strength("player_leftclick") == 1:
 		$"Camera Anchor/Harpoon/Harpoon_Gun".Shoot()
 		
 	#mouse movement

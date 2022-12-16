@@ -13,7 +13,7 @@ collision/safe_margin = 0.01
 motion/sync_to_physics = true
 script = ExtResource( 1 )
 ID = "specific"
-Speed = 0.25
+Speed = 0.01
 
 [node name="temp_harpoon" parent="." instance=ExtResource( 2 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
@@ -21,3 +21,5 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5 )
 shape = SubResource( 1 )
+
+[node name="End" type="Position3D" parent="."]

@@ -9,6 +9,7 @@ onready var Harpoon_Gun = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun"
 onready var Player = $"../Player"
 onready var Fake_Harpoon = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun/Fake_Harpoon"
 onready var Tether_Anchor = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun/Tether_Anchor"
+onready var Rope = $"../Rope"
 var Collision
 
 #gravity
@@ -32,9 +33,12 @@ func _physics_process(delta):
 				#TODO: remove rope
 				Fake_Harpoon.show()
 				self.hide()
+				Rope.hide()
 				#turns on collision with obstacles and fish
-				self.set_collision_mask_bit(1, true)
-				self.set_collision_mask_bit(4, true)
+				self.set_collision_mask_bit(0, true)
+				self.set_collision_mask_bit(3, true)
+				self.set_collision_layer_bit(4, true)
+				self.set_collision_layer_bit(6, false)
 				Changing_State = false
 				
 		STATE.FIRING: 
@@ -43,6 +47,7 @@ func _physics_process(delta):
 				self.global_transform = Harpoon_Gun.global_transform
 				Fake_Harpoon.hide()
 				self.show()
+				Rope.show()
 				Changing_State = false
 			Collision = move_and_collide(transform.basis.xform(Vector3(0, 0, 1)* Speed) + gravity_local)
 			if(Collision):
@@ -57,11 +62,13 @@ func _physics_process(delta):
 			if(Changing_State):
 				print("retracting")
 				#turns off collision with obstacles and fish
-				self.set_collision_mask_bit(1, false)
-				self.set_collision_mask_bit(4, false)
+				self.set_collision_mask_bit(0, false)
+				self.set_collision_mask_bit(3, false)
+				self.set_collision_layer_bit(4, false)
+				self.set_collision_layer_bit(6, true)
 				Changing_State = false
 
-			look_at(Player.global_transform.origin, Vector3.UP)
+			look_at(Harpoon_Gun.global_transform.origin, Vector3.UP)
 			Collision = move_and_collide(Calc_Vector()* Speed/2)
 			if(Collision):
 				Collide(Collision)
@@ -79,7 +86,7 @@ func Fire():
 func Collide(collision: KinematicCollision):
 	print(collision.get_collider())
 	Changing_State = true
-	if(collision.get_collider().name == "Player"):
+	if(collision.get_collider().name == "Player" || collision.get_collider().name == "Reload"):
 		print("loading")
 		State = STATE.LOADED
 	elif(State != STATE.RETRACTING):
@@ -88,6 +95,6 @@ func Collide(collision: KinematicCollision):
 		#TODO: handle fish damage in fish script
 
 func Calc_Vector() -> Vector3:
-	var new_vector = Vector3(Player.translation.x - self.translation.x, 0, Player.translation.z - self.translation.z).normalized()
+	var new_vector = Vector3(Harpoon_Gun.global_translation.x - self.translation.x, 0, Harpoon_Gun.global_translation.z - self.translation.z).normalized()
 	print(new_vector)
 	return new_vector
