@@ -1,0 +1,23 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[sub_resource type="OpenSimplexNoise" id=9]
+period = 1.0
+persistence = 1.0
+lacunarity = 0.1
+
+[sub_resource type="NoiseTexture" id=10]
+width = 128
+height = 128
+seamless = true
+noise = SubResource( 9 )
+
+[resource]
+albedo_color = Color( 1, 1, 1, 0 )
+albedo_texture = SubResource( 10 )
+metallic_specular = 1.0
+roughness = 0.38
+emission_enabled = true
+emission = Color( 0.223529, 0.639216, 0.752941, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false

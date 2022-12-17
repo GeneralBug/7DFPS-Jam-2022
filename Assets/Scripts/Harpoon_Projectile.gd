@@ -95,6 +95,6 @@ func Collide(collision: KinematicCollision):
 		#TODO: handle fish damage in fish script
 
 func Calc_Vector() -> Vector3:
-	var new_vector = Vector3(Harpoon_Gun.global_translation.x - self.translation.x, 0, Harpoon_Gun.global_translation.z - self.translation.z).normalized()
+	var new_vector = Vector3(Harpoon_Gun.global_translation.x - self.translation.x, Harpoon_Gun.global_translation.y - self.translation.y, Harpoon_Gun.global_translation.z - self.translation.z).normalized()
 	print(new_vector)
 	return new_vector

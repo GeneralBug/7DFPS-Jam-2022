@@ -184,3 +184,5 @@ draw_pass_1 = SubResource( 13 )
 script = ExtResource( 6 )
 
 [node name="End" type="Position3D" parent="Rope"]
+
+[node name="Spatial" type="Spatial" parent="."]
