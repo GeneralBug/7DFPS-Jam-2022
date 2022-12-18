@@ -60,6 +60,8 @@ size = Vector3( 0.01, 0.01, 0.01 )
 
 [node name="Test Scene" type="Spatial"]
 
+[node name="Spatial" parent="." instance=ExtResource( 7 )]
+
 [node name="Environment" type="Spatial" parent="."]
 
 [node name="Floor" type="MeshInstance" parent="Environment"]
@@ -186,6 +188,3 @@ draw_pass_1 = SubResource( 13 )
 script = ExtResource( 6 )
 
 [node name="End" type="Position3D" parent="Rope"]
-
-[node name="Barracuda" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.0985 )

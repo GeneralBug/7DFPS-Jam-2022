@@ -74,6 +74,9 @@ player_rightclick={
 3d_physics/layer_5="Harpoon"
 3d_physics/layer_6="Player"
 3d_physics/layer_7="Harpoon 2"
+3d_navigation/layer_1="Barracuda"
+3d_navigation/layer_2="Pufferfish"
+3d_navigation/layer_3="Anglerfish"
 
 [memory]
 
