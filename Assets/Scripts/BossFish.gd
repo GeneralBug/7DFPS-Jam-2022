@@ -2,7 +2,7 @@ extends KinematicBody
 
 enum STATE {ATTACK, PATROL, FLEE}
 var State = STATE.PATROL
-var Patrol_Points = [$"Patrol_1", $"Patrol_2", $"Patrol_3", $"Patrol_4"]
+onready var Patrol_Points = [$"../Patrol_1", $"../Patrol_2", $"../Patrol_3", $"../Patrol_4"]
 onready var Nav_Agent = $NavigationAgent
 onready var Player = $"../../Player"
 var Target_Point: int = 0
@@ -10,7 +10,7 @@ export var Speed: float = 1
 var Changing_State: bool = true
 
 func _ready():
-	pass # Replace with function body.
+	Nav_Agent.connect("velocity_computed", self, "On_Velocity_Computed")
 
 #TODO: fish AI, shooting
 # THREE states:
@@ -18,7 +18,7 @@ func _ready():
 #	attack - charge at the player
 #	run away - charge away from the player
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	match State:
 		STATE.PATROL:
 			if(Changing_State):
@@ -26,14 +26,12 @@ func _physics_process(delta):
 				Changing_State = false
 			#move toward next patrol point
 			#if at patrol point, iterate index
-			if(Nav_Agent.is_navigation_finished()):
-				Target_Point += 1
-				if(Target_Point >= Patrol_Points.size()):
-					Target_Point = 0
+			#if(Nav_Agent.is_navigation_finished()):
+				
 			
-			var direction = self.global_transform.origin.direction_to(Patrol_Points[Target_Point].global_transform.origin)
+			var direction = self.global_transform.origin.direction_to(Nav_Agent.get_next_location())
 			
-			move_and_slide(direction * Nav_Agent.max_speed, Vector3.UP, Patrol_Points[Target_Point].global_transform.origin)
+			move_and_slide(direction * Nav_Agent.max_speed, Vector3.UP)
 			pass
 		STATE.ATTACK:
 			if(Changing_State):
@@ -59,4 +57,32 @@ func Detected():
 		Changing_State = true
 		State == STATE.ATTACk
 		
+func On_Velocity_Computed():
+	pass
 
+func _on_Timer_timeout():
+	pass
+
+func _on_Patrol_1_body_entered(body):
+	if(body == self):
+		Target_Point = 1
+		Nav_Agent.set_target_location(Patrol_Points[Target_Point].global_transform.origin)
+
+func _on_Patrol_2_body_entered(body):
+	if(body == self):
+		Target_Point = 2
+		Nav_Agent.set_target_location(Patrol_Points[Target_Point].global_transform.origin)
+
+func _on_Patrol_3_body_entered(body):
+	if(body == self):
+		Target_Point = 3
+		Nav_Agent.set_target_location(Patrol_Points[Target_Point].global_transform.origin)
+
+func _on_Patrol_4_body_entered(body):
+	if(body == self):
+		Target_Point = 0
+		Nav_Agent.set_target_location(Patrol_Points[Target_Point].global_transform.origin)
+
+func _on_Detection_Radius_body_entered(body):
+	#TODO: check for player
+	pass # Replace with function body.
