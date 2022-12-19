@@ -1,0 +1,13 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Textures/water texture 1.jpg" type="Texture" id=1]
+
+[resource]
+albedo_color = Color( 0.227451, 0.145098, 0.0784314, 1 )
+albedo_texture = ExtResource( 1 )
+metallic = 0.81
+metallic_specular = 1.0
+roughness = 0.5
+rim_enabled = true
+rim = 1.0
+rim_tint = 0.0
