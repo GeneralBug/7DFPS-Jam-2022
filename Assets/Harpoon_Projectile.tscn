@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Scripts/Harpoon_Projectile.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/temp_harpoon.fbx" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Materials/metal.material" type="Material" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 blend_shape_mode = 0
@@ -37,6 +38,7 @@ visible = false
 transform = Transform( -1.31134e-07, 0, 2, 0, 3, 0, -3, 0, -8.74228e-08, 0, 0, 0.585018 )
 mesh = SubResource( 1 )
 skeleton = NodePath("")
+material/0 = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.706347 )
