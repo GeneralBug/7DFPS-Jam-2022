@@ -1,10 +1,93 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Models/temp_harpoongun.fbx" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Models/temp_harpoon.fbx" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Scripts/Harpoon_Gun.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Materials/Wood.tres" type="Material" id=4]
 [ext_resource path="res://Assets/Materials/metal.material" type="Material" id=5]
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Harpoon_Gun/gun:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 270, 90, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Harpoon_Gun/gun:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.101, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "fire"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Harpoon_Gun/gun:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.101375, 0.109815 ), Vector3( 0, -0.101, 0 ), Vector3( 0, -0.101, 0.11 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Harpoon_Gun/gun:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, 180, -90 ), Vector3( -85, 180, -90 ), Vector3( -90, 180, -90 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "tug"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Harpoon_Gun/gun:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, 180, -90 ), Vector3( -90, 200, -90 ), Vector3( -90, 180, -90 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Harpoon_Gun/gun:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.101, 0.11 ), Vector3( 0, 0, 0 ), Vector3( 0, -0.101, 0.11 ) ]
+}
 
 [sub_resource type="ArrayMesh" id=4]
 blend_shape_mode = 0
@@ -38,11 +121,17 @@ surfaces/0 = {
 
 [node name="Harpoon" type="Spatial"]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 7 )
+anims/fire = SubResource( 5 )
+anims/tug = SubResource( 6 )
+
 [node name="Harpoon_Gun" type="Spatial" parent="."]
 script = ExtResource( 3 )
+Animator_Path = NodePath("../AnimationPlayer")
 
 [node name="gun" type="MeshInstance" parent="Harpoon_Gun"]
-transform = Transform( -1.31134e-07, -3, -1.31134e-07, 0, -1.31134e-07, 3, -3, 1.31134e-07, 5.73206e-15, 0, -0.101375, 0.109815 )
+transform = Transform( -1.31134e-07, -3, 3.57746e-08, 0, 3.57746e-08, 3, -3, 1.31134e-07, -1.56376e-15, 0, -0.101, 0 )
 mesh = SubResource( 4 )
 skeleton = NodePath("")
 material/0 = ExtResource( 4 )

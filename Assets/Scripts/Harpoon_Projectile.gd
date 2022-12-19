@@ -47,6 +47,7 @@ func _physics_process(delta):
 				Fake_Harpoon.hide()
 				self.show()
 				Rope.show()
+				Harpoon_Gun.Animator.play("fire")
 				Changing_State = false
 			Collision = move_and_collide(transform.basis.xform(Vector3(0, 0, Speed)) + gravity_local)
 			if(Collision):
@@ -64,8 +65,9 @@ func _physics_process(delta):
 				self.set_collision_mask_bit(3, false)
 				self.set_collision_layer_bit(4, false)
 				self.set_collision_layer_bit(6, true)
+				Harpoon_Gun.Animator.play("tug")
 				Changing_State = false
-			
+				
 			look_at(Harpoon_Gun.global_transform.origin, Vector3.UP)
 			Collision = move_and_collide(Calc_Vector() * (Speed/1.5))
 			if(Collision):

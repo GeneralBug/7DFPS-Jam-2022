@@ -10,10 +10,10 @@ export var Jump_Acceleration: float = 10
 var gravity_local = Vector3()
 
 onready var Camera_Anchor = $"Camera Anchor"
+onready var Harpoon_Gun = $"Camera Anchor/Harpoon/Harpoon_Gun"
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	$"Camera Anchor/Harpoon/Harpoon_Gun".SetProjectile($"../Harpoon_Projectile")
 	
 func _input(event):
 	#release curour
@@ -22,7 +22,7 @@ func _input(event):
 	
 	#shoot
 	if Input.get_action_strength("player_leftclick") == 1:
-		$"Camera Anchor/Harpoon/Harpoon_Gun".Shoot()
+		Harpoon_Gun.Shoot()
 		
 	#mouse movement
 	if event is InputEventMouseMotion:
@@ -52,3 +52,8 @@ func get_input_direction() -> Vector3:
 	var x = (Input.get_action_strength("player_left") - Input.get_action_strength("player_right"))
 
 	return transform.basis.xform(Vector3(x, 0, z).normalized())
+
+func Take_Damage():
+	#TODO: health and stuff
+	print("ouch")
+

@@ -2,11 +2,16 @@ extends Spatial
 
 #TODO: does this script need to exist?
 
+
+export var Animator_Path: NodePath
+var Animator
+export var Projectile_Path: NodePath
 var Projectile
 
-func SetProjectile(Ref):
-	Projectile = Ref
-	
+func _ready():
+	Animator = get_node(Animator_Path)
+	Projectile = get_node(Projectile_Path)
+
 func Shoot():
 	#1. check if fired
 	#	a. tether unlocks (TODO: max tether length?)
@@ -20,4 +25,3 @@ func Shoot():
 	#	b. tether retracts
 	#	c. **touches player, reloads 
 	Projectile.Fire()
-

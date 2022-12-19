@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Scripts/FirstPersonControl.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Harpoon.tscn" type="PackedScene" id=2]
@@ -10,6 +10,33 @@ height = 0.8
 [sub_resource type="CapsuleMesh" id=2]
 radius = 0.3
 mid_height = 0.8
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Harpoon_Gun/gun:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.101375, 0.109815 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Harpoon_Gun/gun:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -90, 90, 0 ) ]
+}
 
 [node name="Player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
@@ -32,3 +59,11 @@ fov = 60.0
 
 [node name="Harpoon" parent="Camera Anchor" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, -0.2, 0.5 )
+
+[node name="AnimationPlayer" parent="Camera Anchor/Harpoon" index="0"]
+anims/RESET = SubResource( 3 )
+
+[node name="gun" parent="Camera Anchor/Harpoon/Harpoon_Gun" index="0"]
+transform = Transform( -1.31134e-07, -3, -1.31134e-07, 0, -1.31134e-07, 3, -3, 1.31134e-07, 5.73206e-15, 0, -0.101375, 0.109815 )
+
+[editable path="Camera Anchor/Harpoon"]

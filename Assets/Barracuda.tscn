@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Scripts/BossFish.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Patrol_Agent.gd" type="Script" id=2]
@@ -112,7 +112,10 @@ surfaces/0 = {
 }
 
 [sub_resource type="SphereShape" id=12]
-radius = 8.0
+radius = 10.0
+
+[sub_resource type="BoxShape" id=17]
+extents = Vector3( 0.274869, 0.475567, 2.21204 )
 
 [sub_resource type="SphereShape" id=13]
 radius = 1.5
@@ -182,10 +185,17 @@ skeleton = NodePath("")
 material/0 = ExtResource( 3 )
 
 [node name="Detection_Radius" type="Area" parent="Barracuda"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.60715 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65666 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Barracuda/Detection_Radius"]
 shape = SubResource( 12 )
+
+[node name="Hurt_Radius" type="Area" parent="Barracuda"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65666 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Barracuda/Hurt_Radius"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.62713 )
+shape = SubResource( 17 )
 
 [node name="Timer" type="Timer" parent="Barracuda"]
 process_mode = 0
@@ -222,7 +232,10 @@ script = ExtResource( 2 )
 [node name="CollisionShape" type="CollisionShape" parent="Patrol_Agent"]
 shape = SubResource( 16 )
 
+[node name="Flee_Position" type="Position3D" parent="."]
+
 [connection signal="body_entered" from="Barracuda/Detection_Radius" to="Barracuda" method="_on_Detection_Radius_body_entered"]
+[connection signal="body_entered" from="Barracuda/Hurt_Radius" to="Barracuda" method="_on_Hurt_Radius_body_entered"]
 [connection signal="body_entered" from="Patrol_1" to="Patrol_Agent" method="_on_Patrol_1_body_entered"]
 [connection signal="body_entered" from="Patrol_2" to="Patrol_Agent" method="_on_Patrol_2_body_entered"]
 [connection signal="body_entered" from="Patrol_3" to="Patrol_Agent" method="_on_Patrol_3_body_entered"]

@@ -40,7 +40,7 @@ mesh = SubResource( 1 )
 skeleton = NodePath("")
 material/0 = ExtResource( 3 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="Harpoon_Projectile" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.706347 )
 shape = SubResource( 2 )
 
