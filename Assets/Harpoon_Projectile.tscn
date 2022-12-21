@@ -45,3 +45,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.706347 )
 shape = SubResource( 2 )
 
 [node name="End" type="Position3D" parent="."]
+
+[node name="Bubble_Anchor" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.44969 )

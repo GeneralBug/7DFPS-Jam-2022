@@ -66,4 +66,7 @@ anims/RESET = SubResource( 3 )
 [node name="gun" parent="Camera Anchor/Harpoon/Harpoon_Gun" index="0"]
 transform = Transform( -1.31134e-07, -3, -1.31134e-07, 0, -1.31134e-07, 3, -3, 1.31134e-07, 5.73206e-15, 0, -0.101375, 0.109815 )
 
+[node name="Bubble_Anchor" type="Position3D" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.7, -0.3 )
+
 [editable path="Camera Anchor/Harpoon"]

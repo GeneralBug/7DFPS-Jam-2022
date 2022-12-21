@@ -10,6 +10,7 @@ onready var Player = $"../Player"
 onready var Fake_Harpoon = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun/Fake_Harpoon"
 onready var Tether_Anchor = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun/Tether_Anchor"
 onready var Rope = $"../Rope"
+onready var Bubbles = $"../Bubble Parent Harpoon/Bubbles_Harpoon"
 var Collision
 
 
@@ -34,6 +35,7 @@ func _physics_process(delta):
 				Fake_Harpoon.show()
 				self.hide()
 				Rope.hide()
+				Bubbles.emitting = false
 				#turns on collision with obstacles and fish
 				self.set_collision_mask_bit(0, true)
 				self.set_collision_mask_bit(3, true)
@@ -47,6 +49,7 @@ func _physics_process(delta):
 				Fake_Harpoon.hide()
 				self.show()
 				Rope.show()
+				Bubbles.emitting = true
 				Harpoon_Gun.Animator.play("fire")
 				Changing_State = false
 			Collision = move_and_collide(transform.basis.xform(Vector3(0, 0, Speed)) + gravity_local)
@@ -55,11 +58,13 @@ func _physics_process(delta):
 			pass
 		STATE.LANDED:
 			if(Changing_State):
+				Bubbles.emitting = false
 				Changing_State = false
 			pass
 		STATE.RETRACTING:
 			if(Changing_State):
 				print("retracting")
+				Bubbles.emitting = true
 				#turns off collision with obstacles and fish
 				self.set_collision_mask_bit(0, false)
 				self.set_collision_mask_bit(3, false)
