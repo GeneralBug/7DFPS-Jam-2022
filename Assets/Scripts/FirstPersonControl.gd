@@ -30,11 +30,11 @@ func _ready():
 func _input(event):
 	#quit
 	if Input.get_action_strength("escape") >= 1:
-		get_tree().quit()
+		print(get_tree().quit())
 	
 	#restart
 	if(Input.get_action_strength("restart") >= 1):
-		get_tree().reload_current_scene()
+		print(get_tree().reload_current_scene())
 		
 	#shoot
 	if Input.get_action_strength("player_leftclick") >= 1:
@@ -69,7 +69,7 @@ func _physics_process(delta):
 		if is_on_floor() && Input.is_action_just_pressed("player_jump"):
 			gravity_local = Vector3.UP * Jump_Acceleration
 		#apply movement
-		move_and_slide((get_input_direction() * Movement_Speed) + gravity_local, Vector3.UP)
+		var _warn1 = move_and_slide((get_input_direction() * Movement_Speed) + gravity_local, Vector3.UP)
 	
 func get_input_direction() -> Vector3:
 	#gets forward/backward movement

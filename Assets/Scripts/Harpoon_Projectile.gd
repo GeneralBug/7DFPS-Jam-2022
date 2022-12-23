@@ -8,7 +8,6 @@ var Changing_State = true
 onready var Harpoon_Gun = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun"
 onready var Player = $"../Player"
 onready var Fake_Harpoon = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun/Fake_Harpoon"
-onready var Tether_Anchor = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun/Tether_Anchor"
 onready var Rope = $"../Rope"
 onready var Bubbles = $"../Bubble Parent Harpoon/Bubbles_Harpoon"
 export var Root_Path: NodePath

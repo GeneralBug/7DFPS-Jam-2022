@@ -13,9 +13,9 @@ export var Speed_Factor: int = 1
 func _ready():
 	Nav_Agent.connect("velocity_computed", self, "On_Velocity_Computed")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction = self.global_transform.origin.direction_to(Nav_Agent.get_next_location())
-	move_and_slide(direction * (Nav_Agent.max_speed/Speed_Factor), Vector3.UP)
+	var _warn1 = move_and_slide(direction * (Nav_Agent.max_speed/Speed_Factor), Vector3.UP)
 
 func _on_Patrol_1_body_entered(body):
 	if(body == self):

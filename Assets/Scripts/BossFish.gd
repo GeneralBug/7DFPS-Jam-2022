@@ -3,8 +3,10 @@ extends KinematicBody
 enum STATE {ATTACK, PATROL, FLEE, DEAD}
 var State = STATE.PATROL
 
+export var Animator_Path: NodePath
 export var Patrol_Agent_Path: NodePath
 export var Flee_Path: NodePath
+var Animator
 var Patrol_Agent 
 var Flee_Pos
 onready var Player = $"../../Player"
@@ -14,9 +16,11 @@ var Changing_State: bool = true
 export var Health: int = 3
 
 func _ready():
-	get_node("../AnimationPlayer").play("swim")
+	Animator = get_node(Animator_Path)
 	Patrol_Agent = get_node(Patrol_Agent_Path)
 	Flee_Pos = get_node(Flee_Path)
+	
+	Animator.play("swim")
 
 #TODO: fish AI, shooting
 # THREE states:
@@ -32,7 +36,7 @@ func _physics_process(_delta):
 				Changing_State = false
 			#follow patrol agent
 			look_at(Patrol_Agent.global_transform.origin, Vector3.UP)
-			move_and_collide(Calc_Vector(Patrol_Agent.global_translation) * Speed)
+			var _warn1 = move_and_collide(Calc_Vector(Patrol_Agent.global_translation) * Speed)
 			pass
 			
 		STATE.ATTACK:
@@ -41,7 +45,7 @@ func _physics_process(_delta):
 				Changing_State = false
 			#follow player
 			look_at(Player.global_transform.origin, Vector3.UP)
-			var collision = move_and_collide(Calc_Vector(Player.global_translation) * (Speed))
+			var _warn2 = move_and_collide(Calc_Vector(Player.global_translation) * (Speed))
 			pass
 			
 		STATE.FLEE:
@@ -50,16 +54,16 @@ func _physics_process(_delta):
 				look_at(Flee_Pos.global_transform.origin, Vector3.UP)
 				Changing_State = false
 			#move away from player
-			move_and_collide(Calc_Vector(Flee_Pos.global_translation) * (Speed))
+			var _warn3 = move_and_collide(Calc_Vector(Flee_Pos.global_translation) * (Speed))
 			pass
 			
 		STATE.DEAD:
 			if(Changing_State):
 				print("DEAD FISH!!")
-				get_node("../AnimationPlayer").play("death")
+				Animator.play("death")
 				Changing_State = false
 				#TODO: contribute to victory condition
-			move_and_slide(Vector3.UP)
+			var _warn4 = move_and_slide(Vector3.UP)
 			pass
 
 func Calc_Vector(target: Vector3) -> Vector3:

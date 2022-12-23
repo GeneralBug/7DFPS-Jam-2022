@@ -6,6 +6,6 @@ var Target_Node
 func _ready():
 	Target_Node = get_node(Target)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	self.global_translation = Target_Node.global_translation
 	self.global_rotation = Target_Node.global_rotation

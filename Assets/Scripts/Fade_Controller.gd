@@ -8,7 +8,7 @@ func _ready():
 	Rect.color = Color.black
 	print(Color.black)
 
-func _process(delta):
+func _physics_process(_delta):
 	if(Fade_In):	
 		Rect.color = Color(0, 0, 0, Alpha)
 		Alpha -= Fade_Step
