@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Scripts/BossFish.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Patrol_Agent.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Scripts/Patrol_Agent.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Materials/Barracuda 1.tres" type="Material" id=3]
 
 [sub_resource type="Animation" id=14]
@@ -30,6 +30,172 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector3( -90, -180, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Barracuda:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Barracuda:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Barracuda/Head2/Body_Pivot:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 4.26371e-05, -0.0872353, -3.11978e-08 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Barracuda/Head2/Body_Pivot:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.1, 0.1, 0.1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Barracuda/Head2/Body_Pivot/Body2/Tail_Pivot:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -3.91901e-05, 0.0802652, 2.87048e-08 ) ]
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("Barracuda/Head2:translation:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("Barracuda/Head2:translation:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 1.49903, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/9/type = "bezier"
+tracks/9/path = NodePath("Barracuda/Head2:translation:z")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( 2.66735, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Barracuda/Head2:translation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.49903, 2.66735 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Barracuda/Head2:rotation_degrees")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -90, 180, 0 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "death"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Barracuda:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 2.6, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 15, 0, 0 ), Vector3( 5.769, 0, 60 ), Vector3( -20, 0, 180 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Barracuda/Head2/Body_Pivot/Body2/Tail_Pivot:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2.2, 3.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, -180, 0 ), Vector3( -105, -180, 0 ), Vector3( -85, -180, 0 ), Vector3( -105, -200, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Barracuda/Head2/Body_Pivot:rotation_degrees")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6, 1.6, 2.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, -180, 0 ), Vector3( -105, -180, 0 ), Vector3( -125, -180, 0 ), Vector3( -125, -160, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Barracuda/Head2:translation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 4, 11.3, 20 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.49903, 2.66735 ), Vector3( 0, 1.49903, 2.66735 ), Vector3( -1.26071e-06, -12.9218, 7.91609 ), Vector3( -2.94096e-06, -32.1416, 14.9116 ) ]
+}
 
 [sub_resource type="Animation" id=15]
 resource_name = "swim"
@@ -37,7 +203,7 @@ length = 2.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Barracuda/Head2/Body_Pivot:rotation_degrees")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -49,7 +215,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Barracuda/Head2/Body_Pivot/Body2/Tail_Pivot:rotation_degrees")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -117,6 +283,9 @@ radius = 10.0
 [sub_resource type="BoxShape" id=17]
 extents = Vector3( 0.274869, 0.475567, 2.21204 )
 
+[sub_resource type="BoxShape" id=19]
+extents = Vector3( 0.162966, 0.226836, 0.777545 )
+
 [sub_resource type="SphereShape" id=13]
 radius = 1.5
 
@@ -128,6 +297,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.0985 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "swim"
 anims/RESET = SubResource( 14 )
+anims/death = SubResource( 18 )
 anims/swim = SubResource( 15 )
 
 [node name="Barracuda" type="KinematicBody" parent="."]
@@ -137,7 +307,7 @@ script = ExtResource( 1 )
 Patrol_Agent_Path = NodePath("../Patrol_Agent")
 
 [node name="Head2" type="CollisionShape" parent="Barracuda"]
-transform = Transform( -10, -0.0048876, -1.74801e-09, 0, -3.57628e-06, 10, -0.0048876, 10, 3.57628e-06, 0, 0, 2.66735 )
+transform = Transform( -10, 8.74228e-07, 3.82137e-14, 0, -4.37114e-07, 10, 8.74228e-07, 10, 4.37114e-07, 0, 1.49903, 2.66735 )
 shape = SubResource( 10 )
 
 [node name="Barra_Head2" type="MeshInstance" parent="Barracuda/Head2"]
@@ -173,7 +343,7 @@ skeleton = NodePath("")
 material/0 = ExtResource( 3 )
 
 [node name="Tail_Pivot" type="KinematicBody" parent="Barracuda/Head2/Body_Pivot/Body2"]
-transform = Transform( -0.1, 1.50996e-08, 6.60024e-16, 0, -4.37114e-09, 0.1, 1.50996e-08, 0.0999999, 4.37114e-09, -3.91901e-05, 0.0802652, 2.87048e-08 )
+transform = Transform( -0.1, -8.74227e-09, -3.82137e-16, 0, -4.37113e-09, 0.1, -8.74228e-09, 0.0999999, 4.37114e-09, -3.91901e-05, 0.0802652, 2.87048e-08 )
 
 [node name="Tail2" type="CollisionShape" parent="Barracuda/Head2/Body_Pivot/Body2/Tail_Pivot"]
 transform = Transform( -10, -0.0048876, -1.74801e-09, 0, -3.57628e-06, 10, -0.0048876, 10, 3.57628e-06, 3.7835e-10, 2.55795e-13, -0.802647 )
@@ -194,8 +364,12 @@ shape = SubResource( 12 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65666 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Barracuda/Hurt_Radius"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.62713 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0960779, 2.38207 )
 shape = SubResource( 17 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Barracuda/Hurt_Radius"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.20539 )
+shape = SubResource( 19 )
 
 [node name="Timer" type="Timer" parent="Barracuda"]
 process_mode = 0

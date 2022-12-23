@@ -1,6 +1,6 @@
 extends KinematicBody
 
-enum STATE {ATTACK, PATROL, FLEE}
+enum STATE {ATTACK, PATROL, FLEE, DEAD}
 var State = STATE.PATROL
 
 export var Patrol_Agent_Path: NodePath
@@ -11,7 +11,7 @@ onready var Player = $"../../Player"
 var Target_Point: int = 0
 export var Speed: float = 1
 var Changing_State: bool = true
-
+export var Health: int = 3
 
 func _ready():
 	get_node("../AnimationPlayer").play("swim")
@@ -52,6 +52,14 @@ func _physics_process(_delta):
 			#move away from player
 			move_and_collide(Calc_Vector(Flee_Pos.global_translation) * (Speed))
 			pass
+			
+		STATE.DEAD:
+			if(Changing_State):
+				print("DEAD FISH!!")
+				get_node("../AnimationPlayer").play("death")
+				Changing_State = false
+				#TODO: contribute to victory condition
+			pass
 
 func Calc_Vector(target: Vector3) -> Vector3:
 	var new_vector = Vector3(target.x - self.global_translation.x, target.y - self.global_translation.y, target.z - self.global_translation.z).normalized()
@@ -65,24 +73,30 @@ func _on_Detection_Radius_body_entered(body):
 		Changing_State = true
 		
 func _on_Hurt_Radius_body_entered(body):
-	print(body)
-	if(body == Player):
-		print("player hurt")
-		Player.Take_Damage()
-		Changing_State = true
-		State = STATE.FLEE
-	elif(body.name == "Harpoon_Projectile"):
-		print("fish got SHOT")
-		self.Take_Damage()
-		Changing_State = true
-		State = STATE.FLEE
-	elif(body.name == "Boundary"):
-		print("fish hit boundary")
-		Changing_State = true
-		State = STATE.PATROL
+	if(State != STATE.DEAD):
+		print(body)
+		if(body == Player):
+			print("player hurt")
+			Player.Take_Damage()
+
+		elif(body.name == "Harpoon_Projectile"):
+			print("fish got SHOT")
+			self.Take_Damage()
+			
+		elif(body.name == "Boundary"):
+			print("fish hit boundary")
+			Changing_State = true
+			State = STATE.PATROL
 
 func Take_Damage():
-	#TODO: health and stuff
-	print("ouch")
+	Health = Health - 1
+	print("fish helth:")
+	print(Health)
+	Changing_State = true
+	if(Health <= 0):
+		State = STATE.DEAD
+	else:
+		State = STATE.FLEE
+
 
 
