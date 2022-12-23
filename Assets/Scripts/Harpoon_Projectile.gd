@@ -11,6 +11,8 @@ onready var Fake_Harpoon = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun/Fake_Ha
 onready var Tether_Anchor = $"../Player/Camera Anchor/Harpoon/Harpoon_Gun/Tether_Anchor"
 onready var Rope = $"../Rope"
 onready var Bubbles = $"../Bubble Parent Harpoon/Bubbles_Harpoon"
+export var Root_Path: NodePath
+onready var Root_Node = get_node(Root_Path)
 var Collision
 
 
@@ -51,8 +53,9 @@ func _physics_process(delta):
 				Rope.show()
 				Bubbles.emitting = true
 				Harpoon_Gun.Animator.play("fire")
+				gravity_local = Vector3.ZERO
 				Changing_State = false
-			Collision = move_and_collide(transform.basis.xform(Vector3(0, 0, Speed)) + gravity_local)
+			Collision = move_and_collide(transform.basis.xform(Vector3(0, Speed/15, Speed)) + gravity_local)
 			if(Collision):
 				Collide(Collision)
 			pass
@@ -71,6 +74,12 @@ func _physics_process(delta):
 				self.set_collision_layer_bit(4, false)
 				self.set_collision_layer_bit(6, true)
 				Harpoon_Gun.Animator.play("tug")
+				#un-anchor from target
+				var pre_transform = global_transform
+				get_parent().remove_child(self)
+				Root_Node.add_child(self)
+				global_transform = pre_transform
+				
 				Changing_State = false
 				
 			look_at(Harpoon_Gun.global_transform.origin, Vector3.UP)
@@ -97,9 +106,15 @@ func Collide(collision: KinematicCollision):
 		State = STATE.LOADED
 	elif(State != STATE.RETRACTING):
 		print("landed")
+		#anchor to target
+		print(global_translation)
+		var pre_transform = global_transform
+		Root_Node.remove_child(self)
+		collision.get_collider().add_child(self)
+		global_transform = pre_transform
+		print(global_translation)
 		State = STATE.LANDED
 		#TODO: handle fish damage in fish script
-
 func Calc_Vector() -> Vector3:
 	var new_vector = Vector3(Harpoon_Gun.global_translation.x - self.translation.x, Harpoon_Gun.global_translation.y - self.translation.y, Harpoon_Gun.global_translation.z - self.translation.z).normalized()
 	##print(new_vector)
