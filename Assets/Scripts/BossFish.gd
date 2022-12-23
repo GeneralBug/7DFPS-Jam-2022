@@ -59,6 +59,7 @@ func _physics_process(_delta):
 				get_node("../AnimationPlayer").play("death")
 				Changing_State = false
 				#TODO: contribute to victory condition
+			move_and_slide(Vector3.UP)
 			pass
 
 func Calc_Vector(target: Vector3) -> Vector3:
@@ -74,29 +75,24 @@ func _on_Detection_Radius_body_entered(body):
 		
 func _on_Hurt_Radius_body_entered(body):
 	if(State != STATE.DEAD):
-		print(body)
 		if(body == Player):
 			print("player hurt")
 			Player.Take_Damage()
-
-		elif(body.name == "Harpoon_Projectile"):
+			State = STATE.FLEE
+			Changing_State = true
+			
+		elif(body.name == "Harpoon_Projectile" && body.Check_Collision()):
 			print("fish got SHOT")
-			self.Take_Damage()
+			Health = Health - 1
+			print("fish health:")
+			print(Health)
+			if(Health <= 0):
+				State = STATE.DEAD
+			else:
+				State = STATE.FLEE
+			Changing_State = true
 			
 		elif(body.name == "Boundary"):
 			print("fish hit boundary")
 			Changing_State = true
 			State = STATE.PATROL
-
-func Take_Damage():
-	Health = Health - 1
-	print("fish helth:")
-	print(Health)
-	Changing_State = true
-	if(Health <= 0):
-		State = STATE.DEAD
-	else:
-		State = STATE.FLEE
-
-
-
