@@ -40,6 +40,10 @@ func _input(event):
 	if Input.get_action_strength("player_leftclick") >= 1:
 		Harpoon_Gun.Shoot()
 		
+	#fuulscreen
+	if Input.get_action_strength("fullscreen") >= 1:
+		OS.window_fullscreen = !OS.window_fullscreen
+		
 	#mouse movement
 	if event is InputEventMouseMotion:
 		#rotate horizontal
