@@ -20,7 +20,8 @@ func _ready():
 	Patrol_Agent = get_node(Patrol_Agent_Path)
 	Flee_Pos = get_node(Flee_Path)
 	
-	Animator.play("swim")
+	if(!Animator.is_playing()):
+		Animator.play("swim")
 
 #TODO: fish AI, shooting
 # THREE states:
@@ -100,3 +101,10 @@ func _on_Hurt_Radius_body_entered(body):
 			print("fish hit boundary")
 			Changing_State = true
 			State = STATE.PATROL
+
+
+func _on_Barracuda_Animator_animation_started(_anim_name):
+	pass # Replace with function body.
+
+func _on_AnimationPlayer_animation_started(_anim_name):
+	pass
